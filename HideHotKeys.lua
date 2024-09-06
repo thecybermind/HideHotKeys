@@ -1,23 +1,32 @@
--- default enabled
-if (HideHotKeys_HK_Hidden == nil) then
-  HideHotKeys_HK_Hidden = true
-end
-
--- default disabled
-if (HideHotKeys_MN_Hidden == nil) then
-  HideHotKeys_MN_Hidden = false
-end
-
-
--- event handler for player joining
-function HideHotKeys_EventHandler(self, event)
+local HideHotKeys_Frame = CreateFrame("Frame")
+HideHotKeys_Frame:SetScript("OnEvent", function (self, event)
+  -- when player zones in (login, teleport, enter/leave instance, etc), run our update function
   if (event == "PLAYER_ENTERING_WORLD") then
     HideHotKeys_Update()
+  -- once the addon is fully loaded, set the default saved variables if they don't exist
+  elseif (event == "ADDON_LOADED ") then
+    if (HideHotKeys_HK_Hidden == nil) then
+      HideHotKeys_HK_Hidden = true  -- default enabled
+    end
+    if (HideHotKeys_MN_Hidden == nil) then
+      HideHotKeys_MN_Hidden = false  -- default disabled
+    end    
   end
-end
-local HideHotKeys_Frame = CreateFrame("Frame")
-HideHotKeys_Frame:SetScript("OnEvent", HideHotKeys_EventHandler)
+end)
 HideHotKeys_Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+HideHotKeys_Frame:RegisterEvent("ADDON_LOADED")
+
+
+-- sometimes, some code runs after PLAYER_ENTERING_WORLD which shows hotkeys/names again,
+-- so we'll just run our update function every 5 seconds
+local timeElapsed = 0
+HideHotKeys_Frame:SetScript("OnUpdate", function(self, elapsed)
+  timeElapsed = timeElapsed + elapsed
+  if (timeElapsed > 5) then
+    timeElapsed = 0
+    HideHotKeys_Update()
+  end
+end)
 
 
 -- the default ActionButton_UpdateHotkeys function will reget the first hotkey associated with a button
@@ -61,7 +70,7 @@ function HideHotKeys_ActionButton_Update(self)
 end
 
 
---rehides if they should be hidden, called whenever the UI reshows them
+-- shows or hides everything based on settings
 function HideHotKeys_Update()
     if (HideHotKeys_HK_Hidden) then
       HideHotKeys_HK_HideAll()
