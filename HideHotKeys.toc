@@ -1,8 +1,8 @@
 ## Interface: 110002
-
 ## Title: HideHotKeys
 ## Notes: Hides the hotkey text on all action buttons
-## SavedVariablesPerCharacter: HideHotKeys_HK_Hidden, HideHotKeys_MN_Hidden
+## Author: cybermind
 ## Version: 4.0
+## SavedVariablesPerCharacter: HideHotKeys_HK_Hidden, HideHotKeys_MN_Hidden
 
 HideHotKeys.lua
