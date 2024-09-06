@@ -1,4 +1,3 @@
-
 local HideHotKeys_Frame = CreateFrame("Frame")
 
 -- default enabled
@@ -76,8 +75,9 @@ end
 
 function HideHotKeys_HK_HideAll()
   HideHotKeys_HideBar("Action", "HotKey")
-  HideHotKeys_HideBar("BonusAction", "HotKey")
   HideHotKeys_HideBar("PetAction", "HotKey")
+  HideHotKeys_HideBar("BonusAction", "HotKey")
+  HideHotKeys_HideBar("ExtraAction", "HotKey")
   HideHotKeys_HideBar("MultiBarBottomLeft", "HotKey")
   HideHotKeys_HideBar("MultiBarBottomRight", "HotKey")
   HideHotKeys_HideBar("MultiBarRight", "HotKey")
@@ -91,8 +91,9 @@ end
 
 function HideHotKeys_HK_ShowAll()
   HideHotKeys_ShowBar("Action", "HotKey")
-  HideHotKeys_ShowBar("BonusAction", "HotKey")
   HideHotKeys_ShowBar("PetAction", "HotKey")
+  HideHotKeys_ShowBar("BonusAction", "HotKey")
+  HideHotKeys_ShowBar("ExtraAction", "HotKey")
   HideHotKeys_ShowBar("MultiBarBottomLeft", "HotKey")
   HideHotKeys_ShowBar("MultiBarBottomRight", "HotKey")
   HideHotKeys_ShowBar("MultiBarRight", "HotKey")
@@ -115,7 +116,9 @@ end
 
 function HideHotKeys_MN_HideAll()
   HideHotKeys_HideBar("Action", "Name")
+  HideHotKeys_HideBar("PetAction", "Name")
   HideHotKeys_HideBar("BonusAction", "Name")
+  HideHotKeys_HideBar("ExtraAction", "Name")
   HideHotKeys_HideBar("MultiBarBottomLeft", "Name")
   HideHotKeys_HideBar("MultiBarBottomRight", "Name")
   HideHotKeys_HideBar("MultiBarRight", "Name")
@@ -131,6 +134,7 @@ function HideHotKeys_MN_ShowAll()
   HideHotKeys_ShowBar("Action", "Name")
   HideHotKeys_ShowBar("PetAction", "Name")
   HideHotKeys_ShowBar("BonusAction", "Name")
+  HideHotKeys_ShowBar("ExtraAction", "Name")
   HideHotKeys_ShowBar("MultiBarBottomLeft", "Name")
   HideHotKeys_ShowBar("MultiBarBottomRight", "Name")
   HideHotKeys_ShowBar("MultiBarRight", "Name")
