@@ -1,5 +1,3 @@
-local HideHotKeys_Frame = CreateFrame("Frame")
-
 -- default enabled
 if (HideHotKeys_HK_Hidden == nil) then
   HideHotKeys_HK_Hidden = true
@@ -11,11 +9,16 @@ if (HideHotKeys_MN_Hidden == nil) then
 end
 
 
+-- event handler for player joining
 function HideHotKeys_EventHandler(self, event)
   if (event == "PLAYER_ENTERING_WORLD") then
     HideHotKeys_Update()
   end
 end
+local HideHotKeys_Frame = CreateFrame("Frame")
+HideHotKeys_Frame:SetScript("OnEvent", HideHotKeys_EventHandler)
+HideHotKeys_Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+
 
 -- the default ActionButton_UpdateHotkeys function will reget the first hotkey associated with a button
 -- and show/hide if there is a bind or not, so we will rehide it if neccesary after the default function runs
@@ -182,17 +185,17 @@ function HideHotKeys_ShowBar(b, f)
   end
 end
 
-HideHotKeys_Frame:SetScript("OnEvent", HideHotKeys_EventHandler)
-HideHotKeys_Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 -- register a hook for action button update functions
 hooksecurefunc(ActionBarActionButtonMixin, "UpdateHotkeys", HideHotKeys_ActionButton_UpdateHotkeys)
 hooksecurefunc(ActionBarActionButtonMixin, "Update", HideHotKeys_ActionButton_Update)
 
+
+-- register slash commands to toggle settings
 SLASH_HIDEHOTKEYSHK1 = "/hhk"
 SlashCmdList["HIDEHOTKEYSHK"] = HideHotKeys_HK_Slash
-
 SLASH_HIDEHOTKEYSMN1 = "/hmn"
 SlashCmdList["HIDEHOTKEYSMN"] = HideHotKeys_MN_Slash
+
 
 DEFAULT_CHAT_FRAME:AddMessage("HideHotKeys loaded! Type /hhk to toggle hotkey text, /hmn to toggle macro name text", 1, 1, 1, 2386, 5)
