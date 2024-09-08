@@ -1,0 +1,5 @@
+v4.1
+* Added timer to re-hide/show every so often, to handle rare issues where they re-appear
+v4.0
+* TOC bump for War Within
+* Added Multibar5, Multibar6, and Multibar7 to show/hide functions
