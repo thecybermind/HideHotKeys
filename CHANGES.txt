@@ -1,3 +1,5 @@
+v5.0
+* Bumped ToC
 v4.1
 * Added timer to re-hide/show every so often, to handle rare issues where they re-appear
 v4.0
